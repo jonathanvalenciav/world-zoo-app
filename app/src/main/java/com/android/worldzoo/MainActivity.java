@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -52,6 +54,28 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 
         animalAdapter = new AnimalAdapter(this, listAnimals, this);
         listViewAnimals.setAdapter(animalAdapter);
+
+        searchAnimal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ArrayList<Animal> searchResult = new ArrayList<>();
+
+                for (Animal animal : listAnimals) {
+                    if (animal.getName().contains(charSequence)) {
+                        searchResult.add(animal);
+                    }
+                }
+                animalAdapter.updateBasedOnSearch(searchResult);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
     private void configSounds() {

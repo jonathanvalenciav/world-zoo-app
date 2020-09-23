@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.android.worldzoo.R;
 import com.android.worldzoo.entity.Animal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,6 +27,12 @@ public class AnimalAdapter extends BaseAdapter {
         this.listAnimalsOut = listAnimals;
         this.listener = listener;
         this.inflater = LayoutInflater.from(context);
+    }
+
+    public void updateBasedOnSearch(ArrayList<Animal> searchResult) {
+        this.listAnimalsOut = new ArrayList<>();
+        this.listAnimalsOut.addAll(searchResult);
+        notifyDataSetChanged();
     }
 
     @Override
