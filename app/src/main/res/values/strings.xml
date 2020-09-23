@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">World Zoo</string>
+    <string name="search_animal_hint">Buscar</string>
+    <string name="animals_title">Animales</string>
+</resources>
